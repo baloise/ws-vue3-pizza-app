@@ -1,0 +1,17 @@
+{
+  "src/**/*.{ts,tsx,json,css,scss,sass,md,mdx,vue}": [
+    "prettier --write",
+    "cspell --gitignore"
+  ],
+  "src/**/*.{ts,tsx,json,vue}": [
+    "eslint --fix"
+  ],
+  "src/**/*.{css,scss,sass,vue}": [
+    "stylelint"
+  ],
+  "cypress/**/*.{ts,json,md}": [
+    "prettier --write",
+    "eslint --fix",
+    "cspell --gitignore"
+  ]
+}
