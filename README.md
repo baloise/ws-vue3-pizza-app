@@ -1,16 +1,135 @@
-# Vue 3 + TypeScript + Vite
+<p align="center"><img width="160" src="./logo.svg" alt="Vue logo"></p>
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+<h1 align="center">
+  Baloise - Vue Starter Kit
+  <br />
+  <small>(Vue 3 + Typescript + Vite)</small>
+</h1>
+
+This template should help get you started developing with Vue 3 and Typescript in Vite.
+
+## Plugins
+
+- Component library: [Baloise Design System](https://design.baloise.dev/)
+- Router: [Vue Router](https://next.router.vuejs.org/)
+- State Management: [Pinia](https://pinia.vuejs.org/)
+- Form Validation: [VeeValidate](https://vee-validate.logaretm.com/v4/)
+- Internationalization: [Vue i18n](https://vue-i18n.intlify.dev/)
+- Http client: [Axios](https://www.npmjs.com/package/axios)
+- Testing: [Vitest](https://vitest.dev/)
+- E2E Testing: [Cypress](https://www.cypress.io/)
+- Linting: [ESlint](https://eslint.org/)
+- Formatting: [Prettier](https://prettier.io/)
+- Documentation: [Storybook](https://storybook.js.org/)
+
+## Recommended Utilities
+
+- JavaScript utility library: [Lodash](https://lodash.com/)
+- JavaScript date library: [date-fns](https://date-fns.org/)
 
 ## Recommended IDE Setup
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
+- Install the IDE [VSCode](https://code.visualstudio.com/).
+- Install all recommended extensions.
 
-## Type Support For `.vue` Imports in TS
+## Recommended Documentations
 
-Since TypeScript cannot handle type information for `.vue` imports, they are shimmed to be a generic Vue component type by default. In most cases this is fine if you don't really care about component prop types outside of templates. However, if you wish to get actual prop types in `.vue` imports (for example to get props validation when using manual `h(...)` calls), you can enable Volar's Take Over mode by following these steps:
+- [Vue 3](https://v3.vuejs.org/)
+- Learing Platform: [Vue Mastery](https://www.vuemastery.com/)
 
-1. Run `Extensions: Show Built-in Extensions` from VS Code's command palette, look for `TypeScript and JavaScript Language Features`, then right click and select `Disable (Workspace)`. By default, Take Over mode will enable itself if the default TypeScript extension is disabled.
-2. Reload the VS Code window by running `Developer: Reload Window` from the command palette.
+## Getting started
 
-You can learn more about Take Over mode [here](https://github.com/johnsoncodehk/volar/discussions/471).
+To get stared clone the vue-starter-kit repository to you machine. Then navigate into the root folder of the project and install the npm dependencies.
+
+```bash
+git clone git@github.com:baloise/vue-starter-kit.git
+cd vue-starter-kit
+npm install
+```
+
+After setting up the project we can serve our application with:
+
+```bash
+npm run dev
+```
+
+The development sever runs at `http://localhost:3000/`.
+
+## NPM Scripts
+
+### install
+
+Installs all the dependencies, which are listed in the `package.json`.
+
+```bash
+npm install
+```
+
+### serve
+
+Serves the application on the development server, which runs at `http://localhost:3000/`.
+
+```bash
+npm run dev
+```
+
+### docs
+
+Starts the local storybook server at `http://localhost:6006/`.
+
+```bash
+npm run docs
+```
+
+### test
+
+### Unit
+
+Run unit tests with vitest.
+
+```bash
+npm run test
+
+# or run test with a watcher and a nice ui
+npm run test:ui
+```
+
+### End 2 End
+
+Starts the development server and runs the cypress E2E test against it.
+
+```bash
+npm run test:e2e
+```
+
+### build
+
+Build the application for production release. The builded application will be in the `dist` folder.
+
+```bash
+npm run build
+```
+
+### lint
+
+Lints the whole src folder. Linting is also executed before the build.
+
+```bash
+npm run lint
+```
+
+### format
+
+With the help of the tool prettier we format all our source files.
+
+```bash
+npm run format
+```
+
+### Customize configuration
+
+See [Configuration Reference](https://cli.vuejs.org/config/).
+
+## License
+
+Apache-2.0 Licensed | Copyright © 2021-present Gery Hirschfeld & Contributors
