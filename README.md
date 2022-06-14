@@ -126,10 +126,6 @@ With the help of the tool prettier we format all our source files.
 npm run format
 ```
 
-### Customize configuration
-
-See [Configuration Reference](https://cli.vuejs.org/config/).
-
 ## License
 
 Apache-2.0 Licensed | Copyright © 2021-present Gery Hirschfeld & Contributors
