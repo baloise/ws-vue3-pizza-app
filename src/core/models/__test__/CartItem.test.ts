@@ -1,6 +1,11 @@
+import { usePizzaDefaults } from './../Pizza'
 import { pizzaMargherita } from './data/pizza.data'
 import { arePizzasEqual, createPizza } from '../Pizza'
-import { calculatePrice, createCartItem } from './../CartItem'
+import {
+  calculatePrice,
+  createCartItem,
+  useCartItemDefaults,
+} from './../CartItem'
 
 describe('Domain: CartItem', () => {
   describe('constructor', () => {
@@ -13,8 +18,8 @@ describe('Domain: CartItem', () => {
       expect(item.amount).toBe(1)
     })
     test('should create an empty instance', () => {
-      const item = createCartItem()
-      expect(arePizzasEqual(item.pizza, createPizza()))
+      const item = useCartItemDefaults()
+      expect(arePizzasEqual(item.pizza, usePizzaDefaults()))
       expect(item.amount).toBe(0)
     })
   })

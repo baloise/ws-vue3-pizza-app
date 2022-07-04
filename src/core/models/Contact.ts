@@ -1,4 +1,6 @@
-import { produce, Immutable } from 'immer'
+import { useModelFactory } from './../../lib/index'
+import { Immutable } from 'immer'
+import { mixed, object, SchemaOf, string } from 'yup'
 
 export type Gender = 'male' | 'female'
 
@@ -9,30 +11,25 @@ export type Contact = Immutable<{
   email: string
 }>
 
-export const defaultContact: Contact = {
+export const useContactDefaults = (): Contact => ({
   gender: 'male',
   firstName: '',
   lastName: '',
   email: '',
-}
+})
 
-export function createContact(contact?: Partial<Contact>): Contact {
-  return produce(defaultContact, (draft) => ({ ...draft, ...contact }))
-}
+export const useContactSchema = (): SchemaOf<Contact> =>
+  object()
+    .shape({
+      firstName: string().required(),
+      lastName: string().required(),
+      gender: mixed().oneOf(['male', 'female']).required(),
+      email: string().email().required(),
+    })
+    .default(useContactDefaults)
+    .required()
 
-// export class Contact {
-//   constructor(
-//     public readonly gender: Gender = 'male',
-//     public readonly firstName: string = '',
-//     public readonly lastName: string = '',
-//     public readonly email: string = '',
-//   ) {}
-// }
-
-// export function createContact(contact?: Partial<Contact>): Contact {
-//   const { gender, firstName, lastName, email } = {
-//     ...new Contact(),
-//     ...contact,
-//   }
-//   return new Contact(gender, firstName, lastName, email)
-// }
+export const createContact = useModelFactory<Contact>({
+  defaults: useContactDefaults,
+  schema: useContactSchema,
+})

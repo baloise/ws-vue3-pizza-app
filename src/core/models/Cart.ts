@@ -1,5 +1,12 @@
-import { Immutable, produce } from 'immer'
-import { calculatePrice, CartItem, createCartItem } from './CartItem'
+import { useModelFactory } from './../../lib/index'
+import { array, object, SchemaOf } from 'yup'
+import produce, { Immutable } from 'immer'
+import {
+  calculatePrice,
+  CartItem,
+  createCartItem,
+  useCartItemSchema,
+} from './CartItem'
 import { MaxShoppingCartItemAmountError } from './error/MaxShoppingCartItemAmountError'
 import { MinShoppingCartItemAmountError } from './error/MinShoppingCartItemAmountError'
 import { arePizzasEqual, Pizza } from './Pizza'
@@ -8,16 +15,22 @@ export type Cart = Immutable<{
   items: CartItem[]
 }>
 
-export const defaultCart: Cart = {
+export const useCartDefaults = (): Cart => ({
   items: [],
-}
+})
 
-export function createCart(cart?: Partial<Cart>): Cart {
-  return produce(defaultCart, (draft) => {
-    draft.items = []
-    cart?.items?.forEach((item) => draft.items.push(item))
-  })
-}
+export const useCartSchema = (): SchemaOf<Cart> =>
+  object()
+    .shape({
+      items: array(useCartItemSchema()).ensure().required(),
+    })
+    .default(useCartDefaults)
+    .required()
+
+export const createCart = useModelFactory({
+  defaults: useCartDefaults,
+  schema: useCartSchema,
+})
 
 export function addPizza(cart: Cart, pizza: Pizza): Cart {
   return produce(cart, (draft) => {
@@ -68,55 +81,3 @@ export function countItems(cart: Cart): number {
 function findIndex(cart: Cart, pizza: Pizza): number {
   return cart.items.findIndex((item) => arePizzasEqual(item.pizza, pizza))
 }
-
-// import { calculatePrice, CartItem, createCartItem } from './CartItem'
-// import { MaxShoppingCartItemAmountError } from './error/MaxShoppingCartItemAmountError'
-// import { MinShoppingCartItemAmountError } from './error/MinShoppingCartItemAmountError'
-// import { arePizzasEqual, Pizza } from './Pizza'
-
-// export class Cart {
-//   constructor(public readonly items: CartItem[] = []) {}
-// }
-
-// export function createCart(cart?: Partial<Cart>): Cart {
-//   const { items } = { ...new Cart(), ...cart }
-//   return new Cart(items)
-// }
-
-// export function addPizza(cart: Cart, pizza: Pizza): Cart {
-//   const newCart = createCart(cart)
-//   const index = findIndex(newCart, pizza)
-
-//   if (index < 0) {
-//     newCart.items.push(createCartItem({ pizza, amount: 1 }))
-//     return newCart
-//   }
-
-//   const { amount } = newCart.items[index]
-//   const newAmount = amount + 1
-
-//   if (newAmount > 10) {
-//     throw new MaxShoppingCartItemAmountError()
-//   }
-
-//   newCart.items[index] = createCartItem({ pizza, amount: newAmount })
-//   return newCart
-// }
-
-// export function removePizza(cart: Cart, pizza: Pizza): Cart {
-//   const newCart = createCart(cart)
-//   const index = findIndex(newCart, pizza)
-
-//   if (index < 0) {
-//     return newCart
-//   }
-
-//   const { amount } = newCart.items[index]
-//   const newAmount = amount - 1
-//   if (newAmount < 0) {
-//     throw new MinShoppingCartItemAmountError()
-//   }
-
-//   newCart.items[index] = createCartItem({ pizza, amount: newAmount })
-//   return newCart
-// }

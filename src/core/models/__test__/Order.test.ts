@@ -1,6 +1,6 @@
 import { addressBasel } from './data/address.data'
 import { userJohnDoe } from './data/contact.data'
-import { createOrder } from '../Order'
+import { createOrder, useOrderDefaults } from '../Order'
 
 describe('Domain: Order', () => {
   describe('constructor', () => {
@@ -13,7 +13,7 @@ describe('Domain: Order', () => {
       expect(order.deliveryAddress).toBe(addressBasel)
     })
     test('should create an empty instance', () => {
-      const order = createOrder()
+      const order = useOrderDefaults()
       expect(order.contact.gender).toBe('male')
       expect(order.contact.firstName).toBe('')
       expect(order.contact.lastName).toBe('')

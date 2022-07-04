@@ -4,7 +4,7 @@ export const pizzaMargherita: Pizza = {
   name: 'Margherita',
   description: 'Tomato sauce, mozzarella, organic oregano',
   price: 16,
-  image: '',
+  image: 'somepath',
 }
 
 export const pizzaStromboli: Pizza = {
@@ -12,5 +12,5 @@ export const pizzaStromboli: Pizza = {
   description:
     'Tomato sauce, mozzarella, fresh chillies, olives, organic oregano',
   price: 18,
-  image: '',
+  image: 'somepath',
 }

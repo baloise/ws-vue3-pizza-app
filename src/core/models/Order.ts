@@ -1,32 +1,29 @@
-import { produce, Immutable } from 'immer'
-import { Address, defaultAddress } from './Address'
-import { Contact, defaultContact } from './Contact'
+import { useModelFactory } from './../../lib/index'
+import { Immutable } from 'immer'
+import { Address, useAddressDefaults, useAddressSchema } from './Address'
+import { Contact, useContactDefaults, useContactSchema } from './Contact'
+import { object, SchemaOf } from 'yup'
 
 export type Order = Immutable<{
   contact: Contact
   deliveryAddress: Address
 }>
 
-export const defaultOrder: Order = {
-  contact: defaultContact,
-  deliveryAddress: defaultAddress,
-}
+export const useOrderDefaults = (): Order => ({
+  contact: useContactDefaults(),
+  deliveryAddress: useAddressDefaults(),
+})
 
-export function createOrder(order?: Partial<Order>): Order {
-  return produce(defaultOrder, (draft) => ({ ...draft, ...order }))
-}
+export const useOrderSchema = (): SchemaOf<Order> =>
+  object()
+    .shape({
+      contact: useContactSchema(),
+      deliveryAddress: useAddressSchema(),
+    })
+    .default(useOrderDefaults)
+    .required()
 
-// import { Contact } from './Contact'
-// import { Address } from './Address'
-
-// export class Order {
-//   constructor(
-//     public readonly contact: Contact = new Contact(),
-//     public readonly deliveryAddress: Address = new Address(),
-//   ) {}
-// }
-
-// export function createOrder(order?: Partial<Order>): Order {
-//   const { contact, deliveryAddress } = { ...new Order(), ...order }
-//   return new Order(contact, deliveryAddress)
-// }
+export const createOrder = useModelFactory<Order>({
+  defaults: useOrderDefaults,
+  schema: useOrderSchema,
+})

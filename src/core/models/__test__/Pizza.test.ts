@@ -1,4 +1,4 @@
-import { arePizzasEqual, createPizza } from '../Pizza'
+import { arePizzasEqual, createPizza, usePizzaDefaults } from '../Pizza'
 import { pizzaMargherita, pizzaStromboli } from './data/pizza.data'
 
 describe('Domain: Pizza', () => {
@@ -10,10 +10,10 @@ describe('Domain: Pizza', () => {
         'Tomato sauce, mozzarella, organic oregano',
       )
       expect(pizza.price).toBe(16)
-      expect(pizza.image).toBe('')
+      expect(pizza.image).toBe('somepath')
     })
     test('should create an empty instance', () => {
-      const pizza = createPizza()
+      const pizza = usePizzaDefaults()
       expect(pizza.name).toBe('')
       expect(pizza.description).toBe('')
       expect(pizza.price).toBe(0)

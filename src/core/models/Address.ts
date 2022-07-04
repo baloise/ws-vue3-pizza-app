@@ -1,4 +1,6 @@
-import { produce, Immutable } from 'immer'
+import { useModelFactory } from './../../lib/index'
+import { Immutable } from 'immer'
+import { object, SchemaOf, string } from 'yup'
 
 export type Address = Immutable<{
   postalCode: string
@@ -7,29 +9,31 @@ export type Address = Immutable<{
   streetNumber: string
 }>
 
-export const defaultAddress: Address = {
-  postalCode: '',
-  city: '',
-  street: '',
-  streetNumber: '',
+export function useAddressDefaults(): Address {
+  return {
+    postalCode: '',
+    city: '',
+    street: '',
+    streetNumber: '',
+  }
 }
 
-export function createAddress(address?: Partial<Address>): Address {
-  return produce(defaultAddress, (draft) => ({ ...draft, ...address }))
+export function useAddressSchema(): SchemaOf<Address> {
+  return object()
+    .shape({
+      postalCode: string().required().length(4),
+      city: string().required(),
+      street: string().required(),
+      streetNumber: string().required(),
+    })
+    .default(useAddressDefaults)
+    .required()
 }
 
-// export class Address {
-//   constructor(
-//     public readonly postalCode: string = '',
-//     public readonly city: string = '',
-//     public readonly street: string = '',
-//     public readonly streetNumber: string = '',
-//   ) {}
-// }
-// export function createAddress(address?: Partial<Address>): Address {
-//   const { postalCode, city, street, streetNumber } = {
-//     ...new Address(),
-//     ...address,
-//   }
-//   return new Address(postalCode, city, street, streetNumber)
-// }
+export function createAddress(address?: Partial<Address>) {
+  const factory = useModelFactory<Address>({
+    defaults: useAddressDefaults,
+    schema: useAddressSchema,
+  })
+  return factory(address)
+}

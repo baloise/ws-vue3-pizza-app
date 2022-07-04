@@ -1,5 +1,5 @@
 import { addressBasel } from './data/address.data'
-import { createAddress } from '../Address'
+import { createAddress, useAddressDefaults } from '../Address'
 
 describe('Domain: Address', () => {
   describe('constructor', () => {
@@ -11,7 +11,7 @@ describe('Domain: Address', () => {
       expect(address.streetNumber).toBe('21')
     })
     test('should create an empty instance', () => {
-      const address = createAddress()
+      const address = useAddressDefaults()
       expect(address.postalCode).toBe('')
       expect(address.city).toBe('')
       expect(address.street).toBe('')
