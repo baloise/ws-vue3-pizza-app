@@ -9,8 +9,7 @@ import {
 } from '@baloise/design-system-components-vue'
 import { useForm } from 'vee-validate'
 import { computed, shallowRef } from 'vue'
-import { createOrder, Order } from '@/core/models/Order'
-import { useOrderSchema } from '@/core/schemas/order.schema'
+import { Order, useOrderDefaults, useOrderSchema } from '@/core/models/Order'
 import CheckoutFormContact from './CheckoutFormContact.vue'
 import CheckoutFormAddress from './CheckoutFormAddress.vue'
 
@@ -28,7 +27,7 @@ export interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  order: () => createOrder(),
+  order: () => useOrderDefaults(),
   loading: false,
 })
 
