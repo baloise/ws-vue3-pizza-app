@@ -1,4 +1,3 @@
-createCartItem
 <script setup lang="ts">
 import { BalInputStepper } from '@baloise/design-system-components-vue'
 import { balCurrency } from '@baloise/web-app-pipes'
@@ -7,6 +6,7 @@ import {
   calculatePrice,
   CartItem,
   createCartItem,
+  useCartItemDefaults,
 } from '@/core/models/CartItem'
 import { Pizza } from '@/core/models/Pizza'
 
@@ -24,7 +24,7 @@ export interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  item: () => createCartItem(),
+  item: () => useCartItemDefaults(),
   readonly: false,
 })
 
