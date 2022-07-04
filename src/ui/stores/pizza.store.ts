@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { Pizza } from '@/core/models/Pizza'
-import { usePizzaGetAllUseCase } from './adapters/usePizzaGetAllUseCase'
+import { usePizzaGetAllUseCase } from './factories/usePizzaGetAllUseCase'
 
 export const usePizzaStore = defineStore('pizza', {
   state: () => {

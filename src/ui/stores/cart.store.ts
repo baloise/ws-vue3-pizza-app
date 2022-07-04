@@ -3,9 +3,9 @@ import { useStorage } from '@vueuse/core'
 import { CartItem } from '@/core/models/CartItem'
 import { calculateTotal, countItems } from '@/core/models/Cart'
 import { Pizza } from '@/core/models/Pizza'
-import { useCartAddPizzaUseCase } from './adapters/useCartAddPizzaUseCase'
-import { useCartRemovePizzaUseCase } from './adapters/useCartRemovePizzaUseCase'
-import { useCartResetUseCase } from './adapters/useCartResetUseCase'
+import { useCartAddPizzaUseCase } from './factories/useCartAddPizzaUseCase'
+import { useCartRemovePizzaUseCase } from './factories/useCartRemovePizzaUseCase'
+import { useCartResetUseCase } from './factories/useCartResetUseCase'
 
 export const useCartStore = defineStore('cart', {
   state: () => {

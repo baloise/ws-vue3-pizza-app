@@ -1,7 +1,6 @@
-import { createOrder } from '../../models/Order'
-import { addressBasel } from '../../models/__test__/data/address.data'
-import { userJohnDoe } from '../../models/__test__/data/contact.data'
-import { useOrderSchema } from '../order.schema'
+import { createOrder, useOrderSchema } from '../Order'
+import { addressBasel } from './data/address.data'
+import { userJohnDoe } from './data/contact.data'
 
 describe('Service: Schema Order', () => {
   test('empty form value should throw an error', async () => {

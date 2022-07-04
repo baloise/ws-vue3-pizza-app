@@ -1,8 +1,8 @@
 import { defineStore } from 'pinia'
 import { createOrder, Order } from '@/core/models/Order'
 import { CartItem } from '@/core/models/CartItem'
-import { useOrderCheckoutUseCase } from './adapters/useOrderCheckoutUseCase'
-import { useOrderSubmitUseCase } from './adapters/useOrderSubmitUseCase'
+import { useOrderCheckoutUseCase } from './factories/useOrderCheckoutUseCase'
+import { useOrderSubmitUseCase } from './factories/useOrderSubmitUseCase'
 
 export const useOrderStore = defineStore('order', {
   state: () => {

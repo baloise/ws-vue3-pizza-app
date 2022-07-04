@@ -1,7 +1,7 @@
 import { Router } from 'vue-router'
-import { RouterService } from '@/core/ports/RouterService'
+import { RouterPort } from '@/core/ports/RouterPort'
 
-export class RouterServiceAdapter implements RouterService {
+export class VueRouterAdapter implements RouterPort {
   constructor(private readonly router: Router) {}
 
   async goToHome() {

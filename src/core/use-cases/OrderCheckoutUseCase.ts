@@ -3,7 +3,7 @@ import { countItems, createCart } from '../models/Cart'
 import { CartItem } from '../models/CartItem'
 import { EmptyShoppingCartError } from '../models/error/EmptyShoppingCartError'
 import { createOrder, Order } from '../models/Order'
-import { RouterService } from '../ports/RouterService'
+import { RouterPort } from '../ports/RouterPort'
 
 interface Context {
   items: CartItem[]
@@ -14,7 +14,7 @@ interface Value {
 }
 
 export class OrderCheckoutUseCase implements UseCase<Context, Value> {
-  constructor(private readonly router: RouterService) {}
+  constructor(private readonly router: RouterPort) {}
 
   async execute({ items }: Context): Promise<Result<Value, string>> {
     try {

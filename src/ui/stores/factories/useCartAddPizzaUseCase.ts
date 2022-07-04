@@ -1,4 +1,4 @@
-import { CartAddPizzaUseCase } from '@/core/use-cases/CartAddPizza.case'
+import { CartAddPizzaUseCase } from '@/core/use-cases/CartAddPizzaUseCase'
 
 export function useCartAddPizzaUseCase(): CartAddPizzaUseCase {
   return new CartAddPizzaUseCase()

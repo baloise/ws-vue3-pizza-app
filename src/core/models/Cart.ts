@@ -22,12 +22,12 @@ export const useCartDefaults = (): Cart => ({
 export const useCartSchema = (): SchemaOf<Cart> =>
   object()
     .shape({
-      items: array(useCartItemSchema()).ensure().required(),
+      items: array().of(useCartItemSchema()).ensure().required(),
     })
     .default(useCartDefaults)
     .required()
 
-export const createCart = useModelFactory({
+export const createCart = useModelFactory<Cart>({
   defaults: useCartDefaults,
   schema: useCartSchema,
 })

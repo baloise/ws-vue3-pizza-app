@@ -1,11 +1,11 @@
 import { Result, UseCase } from '@baloise/web-app-clean-architecture'
 import { createPizza, Pizza } from '../models/Pizza'
-import { PizzaApi } from '../ports/PizzaApi'
+import { PizzaApiPort } from '../ports/PizzaApiPort'
 
 interface Context {}
 
 export class PizzaGetAllUseCase implements UseCase<Context, Pizza[]> {
-  constructor(private readonly api: PizzaApi) {}
+  constructor(private readonly api: PizzaApiPort) {}
 
   async execute(): Promise<Result<Pizza[], string>> {
     const result = await this.api.getAll()

@@ -1,8 +1,8 @@
 import { balToastController } from '@baloise/design-system-components'
-import { NotificationService } from '@/core/ports/NotificationService'
+import { NotificationPort } from '@/core/ports/NotificationPort'
 import { i18n } from '../plugins/i18n.plugin'
 
-export class ToastServiceAdapter implements NotificationService {
+export class NotificationAdapter implements NotificationPort {
   success() {
     balToastController.create({
       color: 'success',

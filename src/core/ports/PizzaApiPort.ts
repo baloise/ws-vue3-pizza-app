@@ -8,7 +8,7 @@ export interface PizzaApiCreateDto {
   items: CartItem[]
 }
 
-export interface PizzaApi {
+export interface PizzaApiPort {
   getAll: () => Promise<Result<Pizza[], string>>
   create: (dto: PizzaApiCreateDto) => Promise<Result<void, string>>
 }

@@ -1,12 +1,11 @@
 import { Result, UseCase } from '@baloise/web-app-clean-architecture'
 import { CartItem } from '../models/CartItem'
-import { createOrder, Order } from '../models/Order'
+import { createOrder, Order, useOrderSchema } from '../models/Order'
 import { countItems, createCart } from '../models/Cart'
-import { NotificationService } from '../ports/NotificationService'
-import { RouterService } from '../ports/RouterService'
-import { CartStore } from '../ports/CartStore'
-import { PizzaApi } from '../ports/PizzaApi'
-import { useOrderSchema } from '../schemas/order.schema'
+import { RouterPort } from '../ports/RouterPort'
+import { PizzaApiPort } from '../ports/PizzaApiPort'
+import { NotificationPort } from '../ports/NotificationPort'
+import { CartStorePort } from '../ports/CartStorePort'
 
 interface Context {
   items: CartItem[]
@@ -19,10 +18,10 @@ interface Value {
 
 export class OrderSubmitUseCase implements UseCase<Context, Value> {
   constructor(
-    private readonly api: PizzaApi,
-    private readonly notification: NotificationService,
-    private readonly router: RouterService,
-    private readonly cartStore: CartStore,
+    private readonly api: PizzaApiPort,
+    private readonly notification: NotificationPort,
+    private readonly router: RouterPort,
+    private readonly cartStore: CartStorePort,
   ) {}
 
   async execute({ items, order }: Context): Promise<Result<Value, string>> {
@@ -44,7 +43,7 @@ export class OrderSubmitUseCase implements UseCase<Context, Value> {
 
     if (result.isSuccess) {
       this.notification.success()
-      await this.cartStore.reset()
+      // await this.cartStore.reset()
       await this.router.goToHome()
       return Result.ok({ order: createOrder() })
     }

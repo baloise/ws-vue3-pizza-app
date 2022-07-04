@@ -1,10 +1,10 @@
-import { PizzaApi, PizzaApiCreateDto } from '@/core/ports/PizzaApi'
 import { Result } from '@baloise/web-app-clean-architecture'
+import { PizzaApiCreateDto, PizzaApiPort } from '../../core/ports/PizzaApiPort'
 
-export class PizzaApiMock implements PizzaApi {
+export class PizzaApiMockAdapter implements PizzaApiPort {
   async getAll() {
     await this.wait()
-    return Result.ok(PizzaApiMock.pizzas)
+    return Result.ok(PizzaApiMockAdapter.pizzas)
   }
 
   async create(dto: PizzaApiCreateDto) {

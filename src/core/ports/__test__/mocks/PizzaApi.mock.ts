@@ -1,6 +1,6 @@
 import { Result } from '@baloise/web-app-clean-architecture'
 import { pizzaMargherita, pizzaStromboli } from '../../../../../data/pizza.data'
-import { PizzaApi } from '../../PizzaApi'
+import { PizzaApi } from '../../PizzaApiPortPort'
 
 export const PizzaApiMock: PizzaApi = {
   getAll: vi
